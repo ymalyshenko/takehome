@@ -8,7 +8,7 @@ export default function CustomAppBar() {
 
     return (
         <AppBar elevation={0} position="static">
-            <Container maxWidth="xl" sx={{paddingTop: 5, display: 'flex', justifyContent: 'center'}}>
+            <Container maxWidth="xl" sx={{padding: 5, display: 'flex', justifyContent: 'center'}}>
                 <Typography variant="h5">New assessment</Typography>
             </Container>
         </AppBar>
