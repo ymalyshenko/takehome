@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {createTheme, ScopedCssBaseline, ThemeProvider} from "@mui/material";
 import CustomRoutes from "./CustomRoutes";
