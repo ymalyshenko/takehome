@@ -1,6 +1,10 @@
 import './App.css';
-import {createTheme, ScopedCssBaseline, ThemeProvider} from "@mui/material";
-import CustomRoutes from "./CustomRoutes";
+import { createTheme, ScopedCssBaseline, ThemeProvider } from '@mui/material';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import CustomRoutes from './CustomRoutes';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 const theme = createTheme({
   typography: {
@@ -8,7 +12,7 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#fff',
+      main: '#0075FF',
     },
     secondary: {
       main: '#484848',
@@ -26,17 +30,54 @@ const theme = createTheme({
     },
   },
   spacing: 8,
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontSize: '1.75rem',
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: '1.25rem',
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#fff',
+          color: '#222222',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: '#222222',
+          textTransform: 'none',
+          fontSize: '1rem',
+          width: '10.5rem',
+          height: '3.75rem',
+          borderRadius: '1.25rem',
+        },
+      },
+    },
+  },
 });
 
-
-function App() {
+export default function App() {
   return (
+    <Provider store={store}>
       <ThemeProvider theme={theme}>
         <ScopedCssBaseline>
-          <CustomRoutes />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomRoutes />
+          </LocalizationProvider>
         </ScopedCssBaseline>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Provider>
   );
 }
-
-export default App;

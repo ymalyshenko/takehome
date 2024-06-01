@@ -1,11 +1,22 @@
-import CustomAppBar from "../components/CustomAppBar";
-import {Typography} from "@mui/material";
+import React, { useEffect } from 'react';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import CustomAppBar from '../components/CustomAppBar';
+import { Container } from '@mui/material';
 
 export default function Main() {
-    return (
-        <>
-            <CustomAppBar/>
-            <Typography variant="subtitle1">Question 1</Typography>
-        </>
-    );
+  const navigate = useNavigate();
+  const { questionId } = useParams();
+
+  useEffect(() => {
+    !questionId && navigate('./1');
+  }, []);
+
+  return (
+    <Container maxWidth="xl" sx={{ padding: '1rem', height: '100vh' }}>
+      <CustomAppBar showNavigation={questionId !== '1'} />
+
+      <Outlet />
+    </Container>
+  );
 }
